@@ -1,0 +1,52 @@
+1.jquery中bind、on和delegate有什么区别？
+    答：on--在选定的元素上绑定一个或多个事件处理函数。在1.7版本中，on方法提供绑定事件处理的所有功能。
+    bind--在.bind()绑定事件的时候，这些元素必须已经存在。
+    delegate 为所有匹配选择器（selector参数）的元素绑定一个或多个事件处理函数，基于一个指定的根元素的子集，匹配的元素包括那些目前已经匹配到的元素，也包括那些今   后可能匹配到的元素。
+     所以 on相当于bind和delegate的合集。
+
+2.<script>标签中defer和async属性的作用是什么？他们有什么区别？
+     (a)带有defer和async属性的script标签与后续的文档加载是并行执行的，也就是异步。而带有defer属性的js文件要在所有元素解析完、DOMCotentLoad之前完成。
+     (b)async是加载完立即执行。
+
+3.请说出下方脚本的执行结果：
+var a= 1, b=2;
+    function c(){
+        alert('c1')
+    }
+    function test(){
+        alert(a);
+        alert(b);
+        c();
+        function b(){
+            return 0
+        }
+        var a= 5, b=6;
+        function c(){
+            alert('c2')
+        }
+    }
+    test();
+答：undefined、function b(){return 0}、c2.
+
+4.如何将参数从一个函数传递到另一个函数？请写出实现代码。
+答：闭包。
+
+5.解释一下重绘和重排？
+答：
+    重绘是一个元素外观的改变所触发的浏览器行为，例如改变visibility、outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，并不一定伴随重排。
+    重排是更明显的一种改变，可以理解为渲染树需要重新计算。
+    常见的触发重排的操作：1. DOM元素的几何属性变化、　2. DOM树的结构变化、3. 获取某些属性
+
+6.querySelector存在什么问题？ 
+答：兼容性。IE8+
+对浏览器支持的选择器，它只是选择性支持。getElementBy系列的执行速度基本都是querySelectorAll的100+倍；
+
+7.原生ajax的创建过程？
+    var xmlHttp=new XMLHttpRequest();
+    xmlHttp.open("GET",url);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange=function(){
+      if(xmlHttp.readystate==4&&xmlHttp.status=200){
+          //success
+      }
+    }
